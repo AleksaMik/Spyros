@@ -1,4 +1,4 @@
-const {Users} = require ('../models');
+const {Users} = require ('../models/Index');
 const usersController = {
     createUsers({body}, res) {
         Users.create(body)
