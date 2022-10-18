@@ -1,5 +1,5 @@
-const {User,Thought} = require('../models');
-const usersController = {
+const {User,} = require('../models');
+const userController = {
     
     createUsers({body}, res) {
         User.create(body)
