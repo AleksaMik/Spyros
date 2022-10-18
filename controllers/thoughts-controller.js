@@ -3,7 +3,7 @@ const {Thought, User} = require('../models');
 
 const thoughtController = {
 
-    createThoughts({params, body}, res) {
+    createThought({params, body}, res) {
         Thought.create(body)
         .then(({_id}) => {
             return User.findOneAndUpdate({ _id: body.userId}, {$push: {thoughts: _id}}, {new: true});
@@ -43,7 +43,7 @@ const thoughtController = {
             res.sendStatus(400);
         });
     },
-    updateThoughts({params, body}, res) {
+    updateThought({params, body}, res) {
         Thought.findOneAndUpdate({_id: params.id}, body, {new: true, runValidators: true})
         .populate({path: 'reactions', select: '-__v'})
         .select('-___v')
@@ -56,7 +56,7 @@ const thoughtController = {
         })
         .catch(err => res.json(err));
     },
-    deleteThoughts({params}, res) {
+    deleteThought({params}, res) {
         Thought.findOneAndDelete({_id: params.id})
         .then(dbThoughtData => {
             if (!dbThoughtData) {

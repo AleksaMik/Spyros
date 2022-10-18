@@ -1,7 +1,7 @@
-const {User,} = require('../models');
+const {User} = require('../models');
 const userController = {
     
-    createUsers({body}, res) {
+    createUser({body}, res) {
         User.create(body)
         .then(dbUsersData => res.json(dbUsersData))
         .catch(err => res.status(400).json(err));
@@ -17,7 +17,7 @@ const userController = {
             res.status(500).json(err);
         });
     },
-    getUsersById({params}, res) {
+    getUserById({params}, res) {
         User.findOne({_id: params.id })
         .populate({path: 'thoughts', select: '-__v'})
         .populate({path: 'friends', select: '-__v'})
@@ -46,7 +46,7 @@ const userController = {
         .catch(err => res.json(err))
     },
 
-    deleteUsers({params}, res) {
+    deleteUser({params}, res) {
         User.findOneAndDelete({_id: params.id})
         .then(dbUserData => {
             if(!dbUserData) {
