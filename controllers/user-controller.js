@@ -63,7 +63,7 @@ const userController = {
         .select('-__v')
         .then(dbUserData => {
             if (!dbUserData) {
-                res.status(404).json({message: 'No User with this particular ID!'});
+                res.status(404).json({message: 'This id is not found!'});
                 return;
             }
         res.json(dbUserData);
@@ -76,7 +76,7 @@ const userController = {
         .select('-__v')
         .then(dbUserData => {
             if(!dbUserData) {
-                res.status(404).json({message: 'No User with this particular ID!'});
+                res.status(404).json({message: 'This id is not found!'});
                 return;
             }
             res.json(dbUserData);
